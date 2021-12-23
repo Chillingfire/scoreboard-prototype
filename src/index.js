@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import Scoreboard from './components/Scoreboard';
+import './fonts/Orbitron-ExtraBold.ttf';
 
 ReactDOM.render(
   <React.StrictMode>
