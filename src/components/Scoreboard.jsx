@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles.css';
 
 class Scoreboard extends React.Component {
     state = {
@@ -11,23 +12,23 @@ class Scoreboard extends React.Component {
         awayScore: 0
     };
 
+//#424549"
+
     render() { 
         return (
-            <div className="text-center">
-                <span className="text-center">
-                    <span style={{backgroundColor: "orange", padding: "20px", fontSize: "50px", font: "Orbitron-ExtraBold.ttf"}}>{this.state.homeTeamName}</span>
-                    <span style={{padding: "20px", fontSize: "60px"}}>{this.state.timeRemainingMinutes}:{this.state.timeRemainingSeconds}</span>
-                    <span style={{backgroundColor: "orange", padding: "20px", fontSize: "50px"}}>{this.state.awayTeamName}</span>
-                </span>
+            <div className="text-center" style={{backgroundColor: "#424549"}}>
+                <span className="font-family" style={{backgroundColor: "#23272A", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.homeTeamName}</span>
+                <span className="font-family" style={{padding: "20px", fontSize: "60px", color: "white"}}>{this.state.timeRemainingMinutes}:{this.state.timeRemainingSeconds}</span>
+                <span className="font-family" style={{backgroundColor: "#23272A", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.awayTeamName}</span>
                 <p></p>
-                <span style={{padding: "10px", fontSize: "50px", marginRight: "310px"}}>{this.state.homeScore}</span>
-                <span style={{padding: "10px", fontSize: "50px"}}>{this.state.awayScore}</span>
+                <span className="font-family" style={{padding: "10px", fontSize: "50px", marginRight: "285px", color: "white"}}>{this.state.homeScore}</span>
+                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.awayScore}</span>
                 <p></p>
-                <button className="btn-secondary m-2" onClick={this.handleHomeIncrement}>Increment Home Score</button>
-                <button className="btn-secondary m-2" onClick={this.handleAwayIncrement}>Increment Away Score</button>
+                <button className="btn-secondary m-2" style={{fontFamily: "Inconsolata"}} onClick={this.handleHomeIncrement}>Increment Home Score</button>
+                <button className="btn-secondary m-2" style={{fontFamily: "Inconsolata"}} onClick={this.handleAwayIncrement}>Increment Away Score</button>
                 <p></p>
-                <button className="btn-secondary m-2" onClick={this.handleHomeDecrement}>Decrement Home Score</button>
-                <button className="btn-secondary m-2" onClick={this.handleAwayDecrement}>Decrement Away Score</button>
+                <button className="btn-secondary m-2" style={{fontFamily: "Inconsolata"}} onClick={this.handleHomeDecrement}>Decrement Home Score</button>
+                <button className="btn-secondary m-2" style={{fontFamily: "Inconsolata"}} onClick={this.handleAwayDecrement}>Decrement Away Score</button>
             </div>
         );
     }
@@ -43,7 +44,7 @@ class Scoreboard extends React.Component {
     }
 
     handleHomeDecrement = () => {
-        if (this.state.homeScore != 0) {
+        if (this.state.homeScore !== 0) {
             this.setState({ homeScore: this.state.homeScore - 1});
             console.log("home score decreased");
         } else {
@@ -53,7 +54,7 @@ class Scoreboard extends React.Component {
     }
 
     handleAwayDecrement = () => {
-        if (this.state.awayScore != 0) {
+        if (this.state.awayScore !== 0) {
             this.setState({ awayScore: this.state.awayScore - 1});
             console.log("away score decreased");
         } else {
