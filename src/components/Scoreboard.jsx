@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Timer from './Timer.jsx'
 import './styles.css';
 
 class Scoreboard extends Component {
@@ -19,7 +20,7 @@ class Scoreboard extends Component {
         return (
             <div className="text-center" style={{backgroundColor: "#222222"}}>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.homeTeamName}</span>
-                <span className="font-family" style={{padding: "20px", fontSize: "60px", color: "white"}}>{this.state.timeRemainingMinutes}:{this.state.timeRemainingSeconds}</span>
+                <Timer/>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.awayTeamName}</span>
                 <p></p>
                 <span className="font-family" style={{padding: "10px", fontSize: "50px", marginRight: "285px", color: "white"}}>{this.state.homeScore}</span>
