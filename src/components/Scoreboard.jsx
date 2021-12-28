@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Timer from './Timer.jsx'
 import './styles.css';
 
 class Scoreboard extends Component {
@@ -7,20 +6,21 @@ class Scoreboard extends Component {
         gameStatus: "scheduled",
         homeTeamName: "HOME",
         awayTeamName: "AWAY",
-        timeRemainingMinutes: 13,
-        timeRemainingSeconds: 54,
         homeScore: 0,
         awayScore: 0,
         downs: 0,
         yardsToGo: 0,
-        quarter: 0
+        quarter: 0,
+        secondsCount: 0,
+        minutesCount: 15,
+        isPaused: false
     };
 
     render() { 
         return (
             <div className="text-center" style={{backgroundColor: "#222222"}}>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.homeTeamName}</span>
-                <Timer/>
+                {this.handleTimerZeros()}
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.awayTeamName}</span>
                 <p></p>
                 <span className="font-family" style={{padding: "10px", fontSize: "50px", marginRight: "285px", color: "white"}}>{this.state.homeScore}</span>
@@ -47,6 +47,10 @@ class Scoreboard extends Component {
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleDownsDecrement}>Decrement Downs</button>
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleYardsDecrement}>Decrement Yards To Go</button>
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleQuarterDecrement}>Decrement Quarter</button>
+                <p></p>
+                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handlePauseTimer}>Start/Pause Timer</button>
+                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleAddOnTimer}>Add 15 Seconds</button>
+                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleResetTimer}>Reset Timer</button>
             </div>
         );
     }
@@ -60,6 +64,22 @@ class Scoreboard extends Component {
         this.setState({ awayScore: this.state.awayScore + 1});
         console.log("away score increased");
     }
+
+    handleTimerZeros = () => {
+        if (this.state.minutesCount < 10 && this.state.secondsCount < 10) {
+            return <span className="timer">0{this.state.minutesCount}:0{this.state.secondsCount}</span>
+        } else {
+            if (this.state.minutesCount < 10) {
+                return <span className="timer">0{this.state.minutesCount}:{this.state.secondsCount}</span>
+            } else {
+                if (this.state.secondsCount < 10) {
+                    return <span className="timer">{this.state.minutesCount}:0{this.state.secondsCount}</span>
+                }
+            }
+        }
+        return <span className="timer">{this.state.minutesCount}:{this.state.secondsCount}</span>
+    }
+
 
     handleDownsIncrement = () => {
         this.setState({ downs: this.state.downs + 1});
@@ -119,6 +139,47 @@ class Scoreboard extends Component {
         } else {
             console.log("cannot decrease quarter below zero");
         }
+    }
+
+    handlePauseTimer = () => {
+        this.setState({isPaused: !(this.state.isPaused)});
+    }
+
+    handleAddOnTimer = () => {
+        this.setState({secondsCount: this.state.secondsCount + 15});
+    }
+
+    handleResetTimer = () => {
+        this.setState({minutesCount: 15});
+        this.setState({secondsCount: 0});
+    }
+
+    componentDidMount() {
+        this.myInterval = setInterval(() => {
+            if (this.state.secondsCount > 60) {
+                var extraMinutes = 0;
+                while (this.state.secondsCount > 60) {
+                    this.setState({ secondsCount: this.state.secondsCount - 60});
+                    extraMinutes += 1;
+                }
+                this.setState({ minutesCount: this.state.minutesCount + extraMinutes});
+            }
+
+            if (this.state.isPaused === false) {
+                this.setState(prevState => ({
+                    secondsCount: prevState.secondsCount - 1
+                }))
+            }
+            
+            if (this.state.secondsCount === -1) {
+                this.setState({ minutesCount: this.state.minutesCount - 1});
+                this.setState({ secondsCount: this.state.secondsCount + 60});
+            }
+        }, 1000)
+    }
+    
+    componentWillUnmount () {
+        clearInterval(this.myInterval)
     }
 }
  
