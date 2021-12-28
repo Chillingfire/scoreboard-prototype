@@ -1,3 +1,6 @@
+//Scoreboard.jsx - component of scoreboard
+//Created by Daniel Kantor
+
 import React, { Component } from 'react';
 import './styles.css';
 
@@ -11,6 +14,7 @@ class Scoreboard extends Component {
         downs: 0,
         yardsToGo: 0,
         quarter: 0,
+        possession: "HOME", //0 - HOME, 1 - AWAY
         secondsCount: 0,
         minutesCount: 15,
         isPaused: false
@@ -26,12 +30,14 @@ class Scoreboard extends Component {
                 <span className="font-family" style={{padding: "10px", fontSize: "50px", marginRight: "285px", color: "white"}}>{this.state.homeScore}</span>
                 <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.awayScore}</span>
                 <p></p>
+                <span className="font-family" style={{padding: "10px", fontSize: "25px", color: "white"}}>{this.state.possession} HAS POSSESSION</span>
+                <p></p>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white", marginLeft: "-10px", marginRight: "40px"}}>DOWN</span>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white", marginRight: "40px"}}>TO GO</span>
                 <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white"}}>QTR</span>
                 <p></p>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.downs}</span>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.yardsToGo}</span>
+                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white", marginRight: "105px"}}>{this.state.downs}</span>
+                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white", marginRight: "95px"}}>{this.state.yardsToGo}</span>
                 <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.quarter}</span>
                 <p></p>
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleHomeIncrement}>Increment Home Score</button>
@@ -51,6 +57,9 @@ class Scoreboard extends Component {
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handlePauseTimer}>Start/Pause Timer</button>
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleAddOnTimer}>Add 15 Seconds</button>
                 <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleResetTimer}>Reset Timer</button>
+                <p></p>
+                <button className='btn-secondary m-1' style={{fontFamily: "Inconsolata"}} onClick={this.handlePossessionChange}>Change Possession</button>
+                <p></p>
             </div>
         );
     }
@@ -79,7 +88,6 @@ class Scoreboard extends Component {
         }
         return <span className="timer">{this.state.minutesCount}:{this.state.secondsCount}</span>
     }
-
 
     handleDownsIncrement = () => {
         this.setState({ downs: this.state.downs + 1});
@@ -114,6 +122,16 @@ class Scoreboard extends Component {
         }
     }
 
+    handlePossessionChange = () => {
+        if (this.state.possession === "HOME") {
+            this.setState({possession: "AWAY"});
+            console.log("away has possession");
+        } else {
+            this.setState({possession: "HOME"});
+            console.log("home has possession");
+        }
+    }
+
     handleDownsDecrement = () => {
         if (this.state.downs !== 0) {
             this.setState({ downs: this.state.downs - 1});
@@ -143,15 +161,18 @@ class Scoreboard extends Component {
 
     handlePauseTimer = () => {
         this.setState({isPaused: !(this.state.isPaused)});
+        console.log("timer is paused");
     }
 
     handleAddOnTimer = () => {
         this.setState({secondsCount: this.state.secondsCount + 15});
+        console.log("15 seconds have been added to the timer");
     }
 
     handleResetTimer = () => {
         this.setState({minutesCount: 15});
         this.setState({secondsCount: 0});
+        console.log("timer has been reset");
     }
 
     componentDidMount() {
@@ -184,5 +205,3 @@ class Scoreboard extends Component {
 }
  
 export default Scoreboard;
-
-
