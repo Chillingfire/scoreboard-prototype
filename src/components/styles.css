@@ -8,3 +8,29 @@
     color: white;
     font-family: "Inconsolata";
 }
+
+.team-name {
+    background-color: #3B3B3B;
+    padding: 25px;
+    font-size: 50px;
+    color: white;
+}
+
+.score {
+    padding: 10px;
+    font-size: 50px;
+    color: white;
+}
+
+.extra-stats {
+    background-color: #3B3B3B;
+    padding: 15px;
+    font-size: 35px;
+    color: white;
+}
+
+.extra-stats-values {
+    padding: 10px;
+    font-size: 50px;
+    color: white;
+}

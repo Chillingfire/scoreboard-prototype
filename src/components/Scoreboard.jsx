@@ -14,7 +14,7 @@ class Scoreboard extends Component {
         downs: 0,
         yardsToGo: 0,
         quarter: 0,
-        possession: "HOME", //0 - HOME, 1 - AWAY
+        possession: "HOME",
         secondsCount: 0,
         minutesCount: 15,
         isPaused: false
@@ -23,42 +23,42 @@ class Scoreboard extends Component {
     render() { 
         return (
             <div className="text-center" style={{backgroundColor: "#222222"}}>
-                <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.homeTeamName}</span>
+                <span className="font-family team-name">{this.state.homeTeamName}</span>
                 {this.handleTimerZeros()}
-                <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "25px", fontSize: "50px", color: "white"}}>{this.state.awayTeamName}</span>
+                <span className="font-family team-name">{this.state.awayTeamName}</span>
                 <p></p>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", marginRight: "285px", color: "white"}}>{this.state.homeScore}</span>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.awayScore}</span>
+                <span className="font-family score" style={{marginRight: "285px"}}>{this.state.homeScore}</span>
+                <span className="font-family score">{this.state.awayScore}</span>
                 <p></p>
                 <span className="font-family" style={{padding: "10px", fontSize: "25px", color: "white"}}>{this.state.possession} HAS POSSESSION</span>
                 <p></p>
-                <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white", marginLeft: "-10px", marginRight: "40px"}}>DOWN</span>
-                <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white", marginRight: "40px"}}>TO GO</span>
-                <span className="font-family" style={{backgroundColor: "#3B3B3B", padding: "15px", fontSize: "35px", color: "white"}}>QTR</span>
+                <span className="font-family extra-stats" style={{marginLeft: "-10px", marginRight: "40px"}}>DOWN</span>
+                <span className="font-family extra-stats" style={{marginRight: "40px"}}>TO GO</span>
+                <span className="font-family extra-stats">QTR</span>
                 <p></p>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white", marginRight: "105px"}}>{this.state.downs}</span>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white", marginRight: "95px"}}>{this.state.yardsToGo}</span>
-                <span className="font-family" style={{padding: "10px", fontSize: "50px", color: "white"}}>{this.state.quarter}</span>
+                <span className="font-family extra-stats-values" style={{marginRight: "105px"}}>{this.state.downs}</span>
+                <span className="font-family extra-stats-values" style={{marginRight: "95px"}}>{this.state.yardsToGo}</span>
+                <span className="font-family extra-stats-values">{this.state.quarter}</span>
                 <p></p>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleHomeIncrement}>Increment Home Score</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleAwayIncrement}>Increment Away Score</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleHomeIncrement}>Increment Home Score</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleAwayIncrement}>Increment Away Score</button>
                 <p></p>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleHomeDecrement}>Decrement Home Score</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleAwayDecrement}>Decrement Away Score</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleHomeDecrement}>Decrement Home Score</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleAwayDecrement}>Decrement Away Score</button>
                 <p></p>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleDownsIncrement}>Increment Downs</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleYardsIncrement}>Increment Yards To Go</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleQuarterIncrement}>Increment Quarter</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleDownsIncrement}>Increment Downs</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleYardsIncrement}>Increment Yards To Go</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleQuarterIncrement}>Increment Quarter</button>
                 <p></p>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleDownsDecrement}>Decrement Downs</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleYardsDecrement}>Decrement Yards To Go</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleQuarterDecrement}>Decrement Quarter</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleDownsDecrement}>Decrement Downs</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleYardsDecrement}>Decrement Yards To Go</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleQuarterDecrement}>Decrement Quarter</button>
                 <p></p>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handlePauseTimer}>Start/Pause Timer</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleAddOnTimer}>Add 15 Seconds</button>
-                <button className="btn-secondary m-1" style={{fontFamily: "Inconsolata"}} onClick={this.handleResetTimer}>Reset Timer</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handlePauseTimer}>Start/Pause Timer</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleAddOnTimer}>Add 15 Seconds</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handleResetTimer}>Reset Timer</button>
                 <p></p>
-                <button className='btn-secondary m-1' style={{fontFamily: "Inconsolata"}} onClick={this.handlePossessionChange}>Change Possession</button>
+                <button className="btn-secondary m-1 font-family" onClick={this.handlePossessionChange}>Change Possession</button>
                 <p></p>
             </div>
         );
