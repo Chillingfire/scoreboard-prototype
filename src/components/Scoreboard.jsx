@@ -6,6 +6,7 @@ import './styles.css';
 
 class Scoreboard extends Component {
     state = {
+        gameID: 0,
         gameStatus: "scheduled",
         homeTeamName: "HOME",
         awayTeamName: "AWAY",
@@ -60,6 +61,7 @@ class Scoreboard extends Component {
                 <p></p>
                 <button className="btn-secondary m-1 font-family" onClick={this.handlePossessionChange}>Change Possession</button>
                 <p></p>
+                <span className="font-family" style={{padding: "10px", fontSize: "25px", color: "white"}}>Created by Daniel Kantor</span>
             </div>
         );
     }
