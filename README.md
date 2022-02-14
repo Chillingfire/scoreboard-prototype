@@ -6,4 +6,6 @@
 
 It involves both an updatable sports scoreboard and a backend database. The scoreboard is created using the React library and is viewable on the internet. One user can be designated to update the information presented on the scoreboard, so that other users can see those updates. A database will be utilized to store multiple games so they can be retrieved by other users.
 
-Link to scoreboard website: https://sport-scoreboard.herokuapp.com/
+<b><i>Current prototype visual interface</i></b>
+
+<img width="488" alt="Screenshot 2022-02-13 165243" src="https://user-images.githubusercontent.com/13321336/153783372-e90623f8-aa3f-4772-96b0-781c70e39104.png">
